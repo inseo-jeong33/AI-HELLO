@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>맛집 검색 서비스</title>
+    <style>
+        body { font-family: 'Apple SD Gothic Neo', sans-serif; background-color: #f5f6f7; margin: 0; padding: 20px; }
+        .search-container { text-align: center; margin-bottom: 30px; }
+        .search-box { width: 400px; padding: 12px; border: 2px solid #03c75a; border-radius: 5px; font-size: 16px; outline: none; }
+        .search-btn { padding: 13px 25px; background-color: #03c75a; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        .result-list { max-width: 700px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .item { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .item:last-child { border-bottom: none; }
+        .item a { text-decoration: none; color: #0078ff; font-size: 18px; font-weight: bold; }
+        .item p { color: #666; font-size: 14px; line-height: 1.6; margin: 5px 0; }
+        .postdate { font-size: 12px; color: #999; }
+        b { color: #ff5a5a; } /* 검색어 강조색 */
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <h1 style="color: #03c75a;">Naver 맛집 검색</h1>
+    <form action="/search" method="get">
+        <input type="text" name="query" class="search-box" placeholder="지역이나 음식을 입력하세요" value="{{ query }}">
+        <button type="submit" class="search-btn">검색</button>
+    </form>
+</div>
+
+{% if items %}
+<div class="result-list">
+    {% for item in items %}
+    <div class="item">
+        <a href="{{ item.link }}" target="_blank">{{ item.title | safe }}</a>
+        <p>{{ item.description | safe }}</p>
+        <span class="postdate">{{ item.postdate }}</span>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+</body>
+<div style="text-align: center; margin-bottom: 20px;">
+    <a href="/" style="margin-right: 20px; text-decoration: none; font-weight: bold; color: #03c75a;">🍴 맛집 검색</a>
+    <a href="/melon" style="text-decoration: none; font-weight: bold; color: #888;">🎵 멜론 차트</a>
+</div>
+</html>

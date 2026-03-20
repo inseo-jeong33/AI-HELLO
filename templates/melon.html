@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Melon 실시간 TOP 10</title>
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f6f6f6; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        h1 { color: #00cd3c; text-align: center; border-bottom: 2px solid #00cd3c; padding-bottom: 10px; }
+        .song-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .rank { font-size: 20px; font-weight: bold; width: 40px; color: #333; }
+        .album-img { width: 60px; height: 60px; border-radius: 5px; margin-right: 15px; }
+        .info .title { font-weight: bold; font-size: 16px; margin-bottom: 5px; color: #000; }
+        .info .artist { color: #888; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; margin-bottom: 20px;">
+    <a href="/" style="margin-right: 20px; text-decoration: none; font-weight: bold; color: #888;">🍴 맛집 검색</a>
+    <a href="/melon" style="text-decoration: none; font-weight: bold; color: #00cd3c;">🎵 멜론 차트</a>
+</div>
+    <div class="container">
+        <h1>Melon 실시간 차트</h1>
+        {% for song in charts %}
+        <div class="song-item">
+            <div class="rank">{{ song.rank }}</div>
+            <img src="{{ song.image }}" class="album-img">
+            <div class="info">
+                <div class="title">{{ song.title }}</div>
+                <div class="artist">{{ song.artist }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
